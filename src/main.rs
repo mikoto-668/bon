@@ -1,4 +1,4 @@
-use clap::{Command, ArgMatches};
+use clap::{Command, ArgMatches, Arg, ArgAction};
 
 fn main() {
     let matches: ArgMatches = Command::new("bon")
@@ -18,6 +18,28 @@ fn main() {
                 .subcommand(
                     Command::new("edit")
                         .about("Edit user information")
+                        .arg_required_else_help(true)
+                        .arg(
+                            Arg::new("username")
+                                .help("your name")
+                                .short('u')
+                                .long("user")
+                                .action(ArgAction::SetTrue)
+                        )
+                        .arg(
+                            Arg::new("mail")
+                                .help("your mail address")
+                                .short('m')
+                                .long("mail")
+                                .action(ArgAction::SetTrue)
+                        )
+                        .arg(
+                            Arg::new("editor")
+                                .help("your editor")
+                                .short('e')
+                                .long("editor")
+                                .action(ArgAction::SetTrue)
+                        )
                 )
                 .subcommand(
                     Command::new("add")
