@@ -2,12 +2,22 @@ use std::{
     collections::BTreeMap,
     fs::File,
     io::{Read, Write},
-    path::{Path, PathBuf},
+    path::{Path, PathBuf}, process::exit,
 };
 
 use home_dir::HomeDirExt;
 
 use crate::bon_lib::utils::structure::Config;
+
+pub fn check_existence(dir_path: PathBuf, file_path: PathBuf) {
+    if !check_existence_dir(dir_path) {
+        exit(1);
+    }
+
+    if !check_existence_file(file_path) {
+        exit(1);
+    }
+}
 
 pub fn check_existence_dir(dir_path: PathBuf) -> bool {
     if dir_path.is_dir() {
@@ -39,7 +49,14 @@ pub fn get_file_list_from_struct_config(config: Config) -> Vec<String> {
     return result;
 }
 
-pub fn read_config_to_string(path: PathBuf) -> Config {
+pub fn read_file_to_string(path: PathBuf) -> String {
+    let mut file: File = File::open(path).expect("Something went wrong");
+    let mut result_string: String = String::new();
+    file.read_to_string(&mut result_string).unwrap();
+    return result_string;
+}
+
+pub fn read_file_to_config_structure(path: PathBuf) -> Config {
     let mut config_file: File = File::open(path).unwrap();
     let mut contents: String = String::new();
 
@@ -48,13 +65,6 @@ pub fn read_config_to_string(path: PathBuf) -> Config {
     let config: Config = serde_json::from_str(&contents).unwrap();
 
     return config;
-}
-
-pub fn read_file_to_string(path: PathBuf) -> String {
-    let mut file: File = File::open(path).expect("Something went wrong");
-    let mut result_string: String = String::new();
-    file.read_to_string(&mut result_string).unwrap();
-    return result_string;
 }
 
 pub fn write_string_to_file(path_string: String, contents_string: String) {
