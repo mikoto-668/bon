@@ -20,6 +20,17 @@ fn main() {
                 .subcommand(Command::new("init").about("Initialize your config"))
                 .subcommand(Command::new("edit").about("Edit user information")),
         )
+        .subcommand(
+            Command::new("template")
+                .about("Template for bon")
+                .arg_required_else_help(true)
+                .subcommand_required(true)
+                .subcommand(Command::new("add").about("Add template profile"))
+                .subcommand(Command::new("update").about("Update template profile"))
+                .subcommand(Command::new("delete").about("Delete template profile"))
+                .subcommand(Command::new("gen").about("Generate template from profile"))
+                .subcommand(Command::new("edit").about("Edit user template"))
+        )
         .subcommand(Command::new("voyage").about("Prepare files from your config"))
         .get_matches();
 
