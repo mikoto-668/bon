@@ -1,2 +1,2 @@
-pub mod structure;
 pub mod path;
+pub mod structure;
