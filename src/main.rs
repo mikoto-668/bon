@@ -1,6 +1,9 @@
 mod bon_lib;
 
-use crate::bon_lib::config::init::init;
+use crate::bon_lib::config::{
+    init::init,
+    edit::edit
+};
 use clap::{Arg, ArgAction, ArgMatches, Command};
 
 fn main() {
@@ -51,7 +54,7 @@ fn main() {
     match matches.subcommand() {
         Some(("config", sub_matches)) => match sub_matches.subcommand() {
             Some(("init", _sub_matches)) => init(),
-            Some(("edit", _sub_matches)) => {}
+            Some(("edit", _sub_matches)) => edit(),
             Some(("add", _sub_matches)) => {}
             Some(("update", _sub_matches)) => {}
             Some(("delete", _sub_matches)) => {}
