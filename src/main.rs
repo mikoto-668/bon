@@ -8,7 +8,8 @@ use crate::bon_lib::{
     template::{
         add::add,
         delete::delete,
-        update::update
+        update::update,
+        gen::gen
     },
     voyage::voyage,
 };
@@ -54,6 +55,7 @@ fn main() {
             Some(("add", _sub_matches)) => add(),
             Some(("update", _sub_matches)) => update(),
             Some(("delete", _sub_matches)) => delete(),
+            Some(("gen", _sub_matches)) => gen(),
             _ => unreachable!(
                 "Exhausted list of subcommands and subcommand_required prevents `None`"
             ),
