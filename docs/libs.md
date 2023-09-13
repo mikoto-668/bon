@@ -6,11 +6,10 @@
 src/
  ├ config/
  │  ├ init.rs     - コンフィグ生成
- │  ├ edit.rs     - ユーザ情報編集
- │  ├ add.rs      - ファイルプロファイル追加
- │  ├ update.rs   - ファイルプロファイル変更
- │  ├ delete.rs   - ファイルプロファイル削除
- │  └ template.rs - テンプレートファイル編集
+ │  └ edit.rs     - ユーザ情報編集
+ ├ template/
+ │  ├ gen.rs      - プロファイルから空ファイル生成
+ │  └ edit.rs     - 指定したテンプレートファイルの編集
  ├ utils.rs
  │  ├ 構造体
  │  └ static変数

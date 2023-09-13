@@ -6,10 +6,10 @@
 bon
  ├ config
  │  ├ init
- │  ├ edit
- │  ├ add
- │  ├ update
- │  └ delete
+ │  └ edit
+ ├ config
+ │  ├ generate
+ │  └ template
  └ voyage
 ```
 
