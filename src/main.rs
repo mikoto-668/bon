@@ -25,7 +25,7 @@ fn main() {
 
     match matches.subcommand() {
         Some(("config", sub_matches)) => match sub_matches.subcommand() {
-            Some(("init", _sub_matches)) => init().unwrap(),
+            Some(("init", _sub_matches)) => init(),
             Some(("edit", _sub_matches)) => edit(),
             Some(("add", _sub_matches)) => {}
             Some(("update", _sub_matches)) => {}
