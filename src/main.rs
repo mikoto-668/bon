@@ -1,3 +1,5 @@
+mod bon_lib;
+
 use clap::{Command, ArgMatches, Arg, ArgAction};
 
 fn main() {
