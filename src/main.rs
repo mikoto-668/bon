@@ -1,7 +1,7 @@
 mod bon_lib;
 
-use crate::bon_lib::config::init::init;
-use clap::{Arg, ArgAction, ArgMatches, Command};
+use crate::bon_lib::config::{edit::edit, init::init};
+use clap::{ArgMatches, Command};
 
 fn main() {
     let matches: ArgMatches = Command::new("bon")
@@ -15,32 +15,7 @@ fn main() {
                 .arg_required_else_help(true)
                 .subcommand_required(true)
                 .subcommand(Command::new("init").about("Initialize your config"))
-                .subcommand(
-                    Command::new("edit")
-                        .about("Edit user information")
-                        .arg_required_else_help(true)
-                        .arg(
-                            Arg::new("username")
-                                .help("your name")
-                                .short('u')
-                                .long("user")
-                                .action(ArgAction::SetTrue),
-                        )
-                        .arg(
-                            Arg::new("mail")
-                                .help("your mail address")
-                                .short('m')
-                                .long("mail")
-                                .action(ArgAction::SetTrue),
-                        )
-                        .arg(
-                            Arg::new("editor")
-                                .help("your editor")
-                                .short('e')
-                                .long("editor")
-                                .action(ArgAction::SetTrue),
-                        ),
-                )
+                .subcommand(Command::new("edit").about("Edit user information"))
                 .subcommand(Command::new("add").about("Add file profile"))
                 .subcommand(Command::new("update").about("Update file profile"))
                 .subcommand(Command::new("delete").about("Delete file profile")),
@@ -51,7 +26,7 @@ fn main() {
     match matches.subcommand() {
         Some(("config", sub_matches)) => match sub_matches.subcommand() {
             Some(("init", _sub_matches)) => init(),
-            Some(("edit", _sub_matches)) => {}
+            Some(("edit", _sub_matches)) => edit(),
             Some(("add", _sub_matches)) => {}
             Some(("update", _sub_matches)) => {}
             Some(("delete", _sub_matches)) => {}
