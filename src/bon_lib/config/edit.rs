@@ -21,16 +21,47 @@ pub fn edit() {
 
     let mut config: Config = read_file_to_config_structure(config_file_path.clone());
 
-    let items: Vec<&str> = MultiSelect::new("Edit...:", ["user", "email", "editor"].to_vec())
-        .prompt()
+    let items: Option<Vec<&str>> = MultiSelect::new("Edit...:", ["user", "email", "editor"].to_vec())
+        .prompt_skippable()
         .expect("Something went wrong on choosing item.");
 
-    for i in items {
+    let mut selected_items: Vec<&str> = [].to_vec();
+
+    if items != None {
+        selected_items = items.unwrap()
+    }
+
+    for i in selected_items {
         match i {
-            "user" => config.user = Text::new("user:").prompt().expect("Something went wrong"),
-            "email" => config.email = Text::new("email:").prompt().expect("Something went wrong"),
+            "user" => {
+                let tmp: Option<String> = Text::new("user:")
+                    .with_help_message("Please input user name")
+                    .prompt_skippable()
+                    .expect("Something went wrong");
+                if tmp != None {
+                    config.user = tmp.unwrap();
+                    println!("Your name has been set to `{}`.", config.user);
+                }
+            },
+            "email" => {
+                let tmp: Option<String> = Text::new("email:")
+                    .with_help_message("Please input email")
+                    .prompt_skippable()
+                    .expect("Something went wrong");
+                if tmp != None {
+                    config.email = tmp.unwrap();
+                    println!("Your mail address has been set to `{}`.", config.email);
+                }
+            },
             "editor" => {
-                config.editor = Text::new("editor:").prompt().expect("Something went wrong")
+                let tmp: Option<String> = Text::new("editor:")
+                    .with_help_message("Please input editor")
+                    .prompt_skippable()
+                    .expect("Something went wrong");
+                if tmp != None {
+                    config.editor = tmp.unwrap();
+                    println!("Your editor has been set to `{}`.", config.editor);
+                }
             }
             _ => println!("Nothing todo!"),
         }
