@@ -5,7 +5,6 @@ pub static DEFAULT_CONFIG: &str = r#"{
     "email": "foo.bar@example.com",
     "editor": "vim",
     "files": {
-        "README.md": "tmpl/README.md"
     }
 }
 "#;

@@ -5,11 +5,11 @@
 ```
 src/
  ├ config/
- │  ├ init.rs
- │  ├ edit.rs
- │  ├ add.rs
- │  ├ update.rs
- │  └ delete.rs
+ │  ├ init.rs     - コンフィグ生成
+ │  └ edit.rs     - ユーザ情報編集
+ ├ template/
+ │  ├ gen.rs      - プロファイルから空ファイル生成
+ │  └ edit.rs     - 指定したテンプレートファイルの編集
  ├ utils.rs
  │  ├ 構造体
  │  └ static変数
