@@ -1,6 +1,9 @@
 mod bon_lib;
 
-use crate::bon_lib::config::{edit::edit, init::init};
+use crate::bon_lib::{
+    config::{edit::edit, init::init},
+    voyage::voyage,
+};
 use clap::{ArgMatches, Command};
 
 fn main() {
@@ -15,7 +18,7 @@ fn main() {
                 .arg_required_else_help(true)
                 .subcommand_required(true)
                 .subcommand(Command::new("init").about("Initialize your config"))
-                .subcommand(Command::new("edit").about("Edit user information"))
+                .subcommand(Command::new("edit").about("Edit user information")),
         )
         .subcommand(Command::new("voyage").about("Prepare files from your config"))
         .get_matches();
@@ -28,7 +31,7 @@ fn main() {
                 "Exhausted list of subcommands and subcommand_required prevents `None`"
             ),
         },
-        Some(("voyage", _sub_matches)) => {}
+        Some(("voyage", _sub_matches)) => voyage(),
         _ => unreachable!("Exhausted list of subcommands and subcommand_required prevents `None`"),
     }
 }
