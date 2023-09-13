@@ -1,5 +1,5 @@
 use std::{
-    fs::File,
+    fs::{File, self},
     io::{Read, Write},
     path::{Path, PathBuf},
     process::exit,
@@ -49,9 +49,9 @@ pub fn add() {
         serde_json::from_str(&config_content).expect("Something went wrong transplant to config.");
 
     let k = Text::new("File name:").prompt().expect("Something went wrong accepting text");
-    let v = "tmpl/".to_string() + &Text::new("File templat path:").prompt().expect("Something went wrong accepting text");
+    let v = Text::new("File templat path:").prompt().expect("Something went wrong accepting text");
 
-    config.files.insert(k, v);
+    config.files.insert(k, v.clone());
 
     let mut config_file: File =
         File::create(&config_file_path).expect("Somethng went wrong opening file.");
@@ -61,5 +61,10 @@ pub fn add() {
     config_file
         .write_all(result_content.as_bytes())
         .expect("Something went wrong writing in file.");
-}
 
+    let v_path = config_dir_path.join(Path::new(&v));
+    let v_path_parent = config_dir_path.join(v_path.parent().unwrap());
+
+    fs::create_dir_all(v_path_parent).expect("Something went wrong");
+    let _v_file: File = File::create(v_path).unwrap();
+}
