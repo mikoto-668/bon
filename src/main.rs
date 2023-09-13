@@ -1,7 +1,14 @@
 mod bon_lib;
 
 use crate::bon_lib::{
-    config::{edit::edit, init::init},
+    config::{
+        edit::edit,
+        init::init
+    },
+    template::{
+        add::add,
+        delete::delete
+    },
     voyage::voyage,
 };
 use clap::{ArgMatches, Command};
@@ -29,7 +36,7 @@ fn main() {
                 .subcommand(Command::new("update").about("Update template profile"))
                 .subcommand(Command::new("delete").about("Delete template profile"))
                 .subcommand(Command::new("gen").about("Generate template from profile"))
-                .subcommand(Command::new("edit").about("Edit user template"))
+                .subcommand(Command::new("edit").about("Edit user template")),
         )
         .subcommand(Command::new("voyage").about("Prepare files from your config"))
         .get_matches();
@@ -38,6 +45,13 @@ fn main() {
         Some(("config", sub_matches)) => match sub_matches.subcommand() {
             Some(("init", _sub_matches)) => init(),
             Some(("edit", _sub_matches)) => edit(),
+            _ => unreachable!(
+                "Exhausted list of subcommands and subcommand_required prevents `None`"
+            ),
+        },
+        Some(("template", sub_matches)) => match sub_matches.subcommand() {
+            Some(("add", _sub_matches)) => add(),
+            Some(("delete", _sub_matches)) => delete(),
             _ => unreachable!(
                 "Exhausted list of subcommands and subcommand_required prevents `None`"
             ),
