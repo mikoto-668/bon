@@ -2,23 +2,22 @@
   <samp>
     <b>
       <h1 align="center">
-        README
+        BON VOYAGE!
       </h1>
-    <br>
-      This is README of my app.
     </b>
   </samp>
 </p>
 
 ## Features
 
-You can do the following by using this app.
+`README.md`や`.editorconfig`などを選択して生成できる。
 
-- Something one
-- Something two
+## Installation
 
-## Other Sections
+```
+cargo install --git git@github.com:yuni-hutsuka/bon.git
+```
 
 ## Contributers
 
-- [Name](mailto:example@example.com)
+- [Yuni Hutsuka](mailto:yuni.wille999@gmail.com)

@@ -1,17 +1,8 @@
 mod bon_lib;
 
 use crate::bon_lib::{
-    config::{
-        edit::edit,
-        init::init
-    },
-    template::{
-        add::add,
-        delete::delete,
-        update::update,
-        gen::gen,
-        edit::edit_template
-    },
+    config::{edit::edit, init::init},
+    template::{add::add, delete::delete, edit::edit_template, gen::gen, update::update},
     voyage::voyage,
 };
 use clap::{ArgMatches, Command};

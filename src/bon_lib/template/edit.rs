@@ -1,10 +1,14 @@
-use std::{path::{Path, PathBuf}, process::{exit, Command}, os::unix::process::CommandExt};
+use std::{
+    os::unix::process::CommandExt,
+    path::{Path, PathBuf},
+    process::{exit, Command},
+};
 
 use home_dir::HomeDirExt;
 use inquire::Select;
 
 use crate::bon_lib::utils::{
-    funcs::{check_existence, read_file_to_config_structure, get_file_list_from_struct_config},
+    funcs::{check_existence, get_file_list_from_struct_config, read_file_to_config_structure},
     path::{CONFIG_DIR, CONFIG_FILE},
     structure::Config,
 };
@@ -23,7 +27,9 @@ pub fn edit_template() {
 
     let file_list: Vec<String> = get_file_list_from_struct_config(config.clone());
 
-    let selection: Option<String> = Select::new("File:", file_list).prompt_skippable().expect("Something went wrong");
+    let selection: Option<String> = Select::new("File:", file_list)
+        .prompt_skippable()
+        .expect("Something went wrong");
 
     if selection == None {
         exit(1);
