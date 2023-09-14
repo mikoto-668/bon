@@ -9,7 +9,8 @@ use crate::bon_lib::{
         add::add,
         delete::delete,
         update::update,
-        gen::gen
+        gen::gen,
+        edit::edit_template
     },
     voyage::voyage,
 };
@@ -56,6 +57,7 @@ fn main() {
             Some(("update", _sub_matches)) => update(),
             Some(("delete", _sub_matches)) => delete(),
             Some(("gen", _sub_matches)) => gen(),
+            Some(("edit", _sub_matches)) => edit_template(),
             _ => unreachable!(
                 "Exhausted list of subcommands and subcommand_required prevents `None`"
             ),
