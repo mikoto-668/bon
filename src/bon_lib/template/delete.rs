@@ -4,10 +4,13 @@ use std::{
 };
 
 use home_dir::HomeDirExt;
-use inquire::{MultiSelect, Confirm};
+use inquire::{Confirm, MultiSelect};
 
 use crate::bon_lib::utils::{
-    funcs::{check_existence, read_file_to_config_structure, write_string_to_file, get_file_list_from_struct_config},
+    funcs::{
+        check_existence, get_file_list_from_struct_config, read_file_to_config_structure,
+        write_string_to_file,
+    },
     path::{CONFIG_DIR, CONFIG_FILE},
     structure::Config,
 };
@@ -26,13 +29,17 @@ pub fn delete() {
 
     let file_list: Vec<String> = get_file_list_from_struct_config(config.clone());
 
-    let selection: Option<Vec<String>> = MultiSelect::new("Files:", file_list).prompt_skippable().expect("Something went wrong");
+    let selection: Option<Vec<String>> = MultiSelect::new("Files:", file_list)
+        .prompt_skippable()
+        .expect("Something went wrong");
 
     if selection == None {
         exit(1);
     }
 
-    let confirm = Confirm::new("Delete are you sure want to?:").prompt_skippable().expect("Something went wrong");
+    let confirm = Confirm::new("Delete are you sure want to?:")
+        .prompt_skippable()
+        .expect("Something went wrong");
 
     if confirm == None {
         exit(1);

@@ -7,7 +7,10 @@ use home_dir::HomeDirExt;
 use inquire::{Select, Text};
 
 use crate::bon_lib::utils::{
-    funcs::{check_existence, read_file_to_config_structure, write_string_to_file, get_file_list_from_struct_config},
+    funcs::{
+        check_existence, get_file_list_from_struct_config, read_file_to_config_structure,
+        write_string_to_file,
+    },
     path::{CONFIG_DIR, CONFIG_FILE},
     structure::Config,
 };
@@ -26,16 +29,23 @@ pub fn update() {
 
     let file_list: Vec<String> = get_file_list_from_struct_config(config.clone());
 
-    let selection: Option<String> = Select::new("File:", file_list).prompt_skippable().expect("Something went wrong");
+    let selection: Option<String> = Select::new("File:", file_list)
+        .prompt_skippable()
+        .expect("Something went wrong");
 
     if selection == None {
         exit(1);
     }
 
-    let new_path: Option<String> = Text::new("File Path").prompt_skippable().expect("Something went wrong");
+    let new_path: Option<String> = Text::new("File Path")
+        .prompt_skippable()
+        .expect("Something went wrong");
 
     if new_path != None {
-        config.files.insert(selection.unwrap(), new_path.unwrap()).expect("Someting went wrong");
+        config
+            .files
+            .insert(selection.unwrap(), new_path.unwrap())
+            .expect("Someting went wrong");
     }
 
     let result_content: String =

@@ -1,5 +1,5 @@
 pub mod add;
-pub mod update;
 pub mod delete;
-pub mod gen;
 pub mod edit;
+pub mod gen;
+pub mod update;

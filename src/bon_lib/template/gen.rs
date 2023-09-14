@@ -1,5 +1,6 @@
 use std::{
-    path::{Path, PathBuf}, fs::File,
+    fs::File,
+    path::{Path, PathBuf},
 };
 
 use home_dir::HomeDirExt;
