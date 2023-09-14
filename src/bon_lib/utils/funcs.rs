@@ -2,7 +2,8 @@ use std::{
     collections::BTreeMap,
     fs::File,
     io::{Read, Write},
-    path::{Path, PathBuf}, process::exit,
+    path::{Path, PathBuf},
+    process::exit,
 };
 
 use home_dir::HomeDirExt;

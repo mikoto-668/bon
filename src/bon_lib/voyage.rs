@@ -1,6 +1,7 @@
 use std::{
     collections::BTreeMap,
-    path::{Path, PathBuf}, process::exit,
+    path::{Path, PathBuf},
+    process::exit,
 };
 
 use home_dir::HomeDirExt;
@@ -8,8 +9,8 @@ use inquire::MultiSelect;
 
 use crate::bon_lib::utils::{
     funcs::{
-        get_file_list_from_struct_config, read_file_to_string,
-        write_string_to_file, read_file_to_config_structure, check_existence,
+        check_existence, get_file_list_from_struct_config, read_file_to_config_structure,
+        read_file_to_string, write_string_to_file,
     },
     path::{CONFIG_DIR, CONFIG_FILE},
     structure::Config,

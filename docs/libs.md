@@ -8,6 +8,9 @@ src/
  │  ├ init.rs     - コンフィグ生成
  │  └ edit.rs     - ユーザ情報編集
  ├ template/
+ │  ├ add.rs      - プロファイルを追加
+ │  ├ update.rs   - プロファイルを編集
+ │  ├ delete.rs   - プロファイルを削除
  │  ├ gen.rs      - プロファイルから空ファイル生成
  │  └ edit.rs     - 指定したテンプレートファイルの編集
  ├ utils.rs
