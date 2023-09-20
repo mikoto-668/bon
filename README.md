@@ -54,7 +54,7 @@ Rustをインストールしておいてください。[こちら](https://www.r
 ### インストール
 
 ```
-cargo install --git git@github.com:yuni-hutsuka/bon.git
+cargo install --git https://github.com/yuni-hutsuka/bon.git
 ```
 
 ## Contributers
