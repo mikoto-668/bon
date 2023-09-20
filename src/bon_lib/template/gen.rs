@@ -27,9 +27,10 @@ pub fn gen() {
         let str: String = entry.to_owned();
         let path: &Path = Path::new(&str);
         let all_path: PathBuf = config_dir_path.clone().join(path);
-
-        File::create(all_path).expect("Something went wrong");
+        if all_path.is_file() {
+            println!("> Already exists: {}", str);
+        } else {
+            File::create(all_path).expect("Something went wrong");
+        }
     }
-
-    println!("Generated")
 }
