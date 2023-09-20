@@ -37,9 +37,13 @@ pub fn voyage() {
     }
 
     // ファイル一覧を使って生成するファイルを選択する
-    let selected_files: Vec<String> = MultiSelect::new("File:", file_list).prompt().unwrap();
+    let selected_files: Option<Vec<String>> = MultiSelect::new("File:", file_list).prompt_skippable().expect("Something went wrong in multi select");
 
-    for entry in selected_files {
+    if selected_files == None {
+        exit(1)
+    }
+
+    for entry in selected_files.unwrap() {
         // ファイル名で検索してパス文字列を呼び出し
         let path_string: String = profiles.get(&entry).unwrap().to_owned();
         // パス文字列をコンフィグディレクトリに接続してパスにする

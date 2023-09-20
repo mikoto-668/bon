@@ -12,7 +12,7 @@ fn main() {
         .about("The command that prepare some files for your directory")
         .arg_required_else_help(true)
         .subcommand_required(true)
-        .version("1.0.0")
+        .version("1.0.1")
         .subcommand(
             Command::new("config")
                 .about("Configuration for bon")
